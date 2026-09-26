@@ -1,9 +1,9 @@
 {
-  "name": "My Chore Reset",
-  "short_name": "Chore Reset",
+  "name": "Guardian Reset",
+  "short_name": "Guardian Reset",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f5f4f0",
-  "theme_color": "#171717",
+  "background_color": "#0d1018",
+  "theme_color": "#0d1018",
   "icons": []
 }
