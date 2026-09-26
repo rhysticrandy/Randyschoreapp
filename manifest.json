@@ -1,0 +1,9 @@
+{
+  "name": "My Chore Reset",
+  "short_name": "Chore Reset",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f4f0",
+  "theme_color": "#171717",
+  "icons": []
+}
