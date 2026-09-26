@@ -1,100 +1,57 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#171717">
-<title>My Chore Reset</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171717"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><title>My Chore Reset</title>
 <link rel="manifest" href="manifest.json">
 <style>
-:root{--bg:#f5f4f0;--card:#fff;--ink:#1d1d1f;--muted:#737373;--line:#e6e3dc;--accent:#3f6b57;--accent2:#dfe9e2;--danger:#9a3b3b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:90px}
-header{position:sticky;top:0;background:rgba(245,244,240,.94);backdrop-filter:blur(12px);z-index:5;padding:18px 18px 10px;border-bottom:1px solid var(--line)}
-h1{margin:0;font-size:25px}.date{color:var(--muted);font-size:14px;margin-top:4px}
-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:10;padding:8px 10px calc(8px + env(safe-area-inset-bottom));justify-content:space-around}
-nav button{border:0;background:none;color:var(--muted);font-size:12px;padding:6px 10px}.active{color:var(--accent)!important;font-weight:700}
-main{max-width:700px;margin:auto;padding:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:10px 0;box-shadow:0 2px 8px #00000008}
-.progress{height:9px;background:#eceae5;border-radius:20px;overflow:hidden;margin:10px 0}.bar{height:100%;background:var(--accent);width:0;transition:.2s}
-.row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}
-input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent);flex:0 0 auto}.done{text-decoration:line-through;color:var(--muted)}
-.tag{font-size:11px;background:var(--accent2);color:var(--accent);padding:4px 7px;border-radius:8px;margin-left:auto;white-space:nowrap}
-button.primary{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:11px 14px;font-weight:700}
-button.secondary{background:#eee;border:0;border-radius:12px;padding:11px 14px}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{background:#fff;border:1px solid var(--line);border-radius:10px;min-height:65px;padding:5px;font-size:11px}.day.today{outline:2px solid var(--accent)}.daynum{font-weight:700}.dot{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin:2px}
-h2{font-size:18px;margin:10px 0 5px}h3{font-size:15px;margin:8px 0}
-.small{font-size:13px;color:var(--muted)}.empty{padding:30px;text-align:center;color:var(--muted)}
-.setting{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
-input[type=time]{font-size:16px;padding:8px;border:1px solid var(--line);border-radius:10px}
-</style>
-</head>
-<body>
-<header><h1>My Chore Reset</h1><div class="date" id="headerDate"></div></header>
-<main id="app"></main>
-<nav>
-<button data-tab="today" class="active">✓ Today</button>
-<button data-tab="calendar">▦ Calendar</button>
-<button data-tab="settings">⚙ Settings</button>
-</nav>
+:root{--bg:#f5f4f0;--card:#fff;--ink:#1d1d1f;--muted:#777;--line:#e4e1da;--accent:#3f6b57;--soft:#e1ebe4;--warn:#9a6833}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:82px}
+header{padding:18px 18px 12px;background:rgba(245,244,240,.95);backdrop-filter:blur(14px);position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}
+h1{font-size:25px;margin:0}.date{font-size:14px;color:var(--muted);margin-top:4px}
+main{max-width:720px;margin:auto;padding:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin:10px 0;box-shadow:0 2px 8px #00000008}
+h2{font-size:18px;margin:2px 0 7px}h3{font-size:15px;margin:12px 0 5px}.small{font-size:13px;color:var(--muted)}
+.progress{height:10px;background:#ebe9e4;border-radius:99px;overflow:hidden;margin:11px 0 5px}.bar{height:100%;background:var(--accent);transition:.25s}
+.row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent);flex:none}.done{text-decoration:line-through;color:var(--muted)}
+.tag{margin-left:auto;font-size:10px;padding:4px 7px;border-radius:8px;background:var(--soft);color:var(--accent)}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:9;padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:flex;justify-content:space-around}
+nav button{border:0;background:none;color:#777;font-size:12px;padding:6px 12px}.active{color:var(--accent)!important;font-weight:700}
+button{font:inherit}.primary{background:var(--accent);color:#fff;border:0;border-radius:11px;padding:10px 13px;font-weight:700}.secondary{background:#eee;border:0;border-radius:11px;padding:10px 13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.weekday{text-align:center;font-size:10px;color:var(--muted)}
+.day{background:#fff;border:1px solid var(--line);border-radius:10px;min-height:70px;padding:5px;font-size:11px}.today{outline:2px solid var(--accent)}.day strong{font-size:12px}.dot{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin:3px 2px}
+.setting{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}input[type=time],input[type=text]{font-size:16px;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
+.streak{font-size:30px;font-weight:800}.statgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{background:#f6f5f1;border-radius:12px;padding:11px;text-align:center}
+textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit}
+.empty{text-align:center;padding:25px;color:var(--muted)}
+</style></head><body>
+<header><h1>My Chore Reset</h1><div class="date" id="headerDate"></div></header><main id="app"></main>
+<nav><button data-tab="today" class="active">✓ Today</button><button data-tab="calendar">▦ Calendar</button><button data-tab="stats">★ Progress</button><button data-tab="settings">⚙ Settings</button></nav>
 <script>
-const KEY="choreResetV1";
-const defaultSettings={morning:"07:30",cleaning:"18:00",night:"21:30",notifications:false};
-const routines={
-morning:["Get up & drink water","Brush teeth / wash face","Make bed","Get dressed","Dirty clothes in hamper","2-minute room tidy","Check today's tasks"],
-night:["Dishes / kitchen reset","Put clothes away","5–10 minute room reset","Brush teeth / wash face","Set out tomorrow's clothes","Check tomorrow's schedule","Plug in phone"]
-};
-const recurring={
-daily:["Make bed","Dishes / kitchen reset","Put dirty clothes in hamper","Quick room tidy"],
-thu:["Laundry","Change sheets","Vacuum bedroom","Clean bathroom","Water plants"],
-fri:["Deep-clean kitchen","Mop floors","Dust","Take out trash","Organize bedroom"]
-};
-const monthly={
-"2026-10-09":["Clean fridge","Clean microwave","Dust vents/fans","Organize desk"],
-"2026-10-16":["Clean appliances","Clean under furniture"],
-"2026-10-23":["Organize closet","Organize drawers","Dust baseboards","Clean mirrors/windows"],
-"2026-10-30":["Deep-clean kitchen","Deep-clean bathroom","Mop all floors","Dust everything","Clean fridge","Take out trash"]
-};
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{checks:{},settings:defaultSettings}}catch(e){return{checks:{},settings:defaultSettings}}}
-let state=load(); state.settings={...defaultSettings,...state.settings};
+const KEY="myChoreResetV2";
+const defaultState={checks:{},custom:[],settings:{morning:"07:30",cleaning:"18:00",night:"21:30",plants:"18:15"}};
+let state=JSON.parse(localStorage.getItem(KEY)||"null")||defaultState;state={...defaultState,...state,settings:{...defaultState.settings,...(state.settings||{})},checks:state.checks||{},custom:state.custom||[]};
+const routines={morning:["Drink water","Brush teeth / wash face","Make bed","Get dressed","Put dirty clothes in hamper","2-minute room tidy","Check today's tasks"],night:["Dishes / kitchen reset","Put clothes away","5–10 minute room reset","Brush teeth / wash face","Set out tomorrow's clothes","Check tomorrow's schedule","Plug in phone"]};
+const daily=["Make bed","Dishes / kitchen reset","Put dirty clothes in hamper","Quick room tidy"];
+const thu=["Laundry","Change sheets","Vacuum bedroom","Clean bathroom","Water plants"];
+const fri=["Deep-clean kitchen","Mop floors","Dust","Take out trash","Organize bedroom"];
+const monthly={"2026-10-09":["Clean fridge","Clean microwave","Dust vents/fans","Organize desk"],"2026-10-16":["Clean appliances","Clean under furniture"],"2026-10-23":["Organize closet","Organize drawers","Dust baseboards","Clean mirrors/windows"],"2026-10-30":["Deep-clean kitchen","Deep-clean bathroom","Mop all floors","Dust everything","Clean fridge","Take out trash"]};
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
-function key(date,task){return date+"|"+task}
-function dateKey(d){return d.toISOString().slice(0,10)}
-function fmt(d){return d.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}
-function tasksFor(d){
- let ds=dateKey(d), day=d.getDay(), a=[...routines.morning.map(x=>"🌅 "+x),...recurring.daily];
- if(day===4)a.push(...recurring.thu.map(x=>"🟢 "+x));
- if(day===5)a.push(...recurring.fri.map(x=>"🟢 "+x));
- if(monthly[ds])a.push(...monthly[ds].map(x=>"🧽 "+x));
- a.push(...routines.night.map(x=>"🌙 "+x));
- return [...new Set(a)];
-}
-function renderToday(){
- const d=new Date(), ds=dateKey(d), tasks=tasksFor(d);
- let done=tasks.filter(t=>state.checks[key(ds,t)]).length;
- app.innerHTML=`<section class="card"><h2>Today</h2><div class="small">${fmt(d)}</div><div class="progress"><div class="bar" style="width:${tasks.length?done/tasks.length*100:0}%"></div></div><div class="small">${done} of ${tasks.length} completed</div></section>`;
- const groups=[["🌅 Morning",tasks.filter(x=>x.startsWith("🌅 "))],["🧹 Chores",tasks.filter(x=>!x.startsWith("🌅 ")&&!x.startsWith("🌙 "))],["🌙 Night",tasks.filter(x=>x.startsWith("🌙 "))]];
- groups.forEach(([name,list])=>{let c=document.createElement("section");c.className="card";c.innerHTML="<h2>"+name+"</h2>";list.forEach(t=>c.appendChild(taskRow(t,ds)));app.appendChild(c)});
-}
-function taskRow(t,ds){let r=document.createElement("label");r.className="row";let cb=document.createElement("input");cb.type="checkbox";cb.checked=!!state.checks[key(ds,t)];let text=document.createElement("span");text.textContent=t.replace(/^🌅 |^🌙 |^🟢 |^🧽 /,"");if(cb.checked)text.className="done";let tag=(t.startsWith("🟢")||t.startsWith("🧽"))?`<span class="tag">${t.startsWith("🧽")?"Deep clean":"Off day"}</span>`:"";r.append(cb,text);if(tag)r.insertAdjacentHTML("beforeend",tag);cb.onchange=()=>{state.checks[key(ds,t)]=cb.checked;save();renderToday()};return r}
-function renderCalendar(){
- let d=new Date();d.setDate(1);let y=d.getFullYear(),m=d.getMonth(),first=d.getDay(),days=new Date(y,m+1,0).getDate();
- let h="<section class='card'><h2>"+d.toLocaleDateString(undefined,{month:"long",year:"numeric"})+"</h2><div class='grid'>"+["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(x=>"<div class='small' style='text-align:center'>"+x+"</div>").join("");
- for(let i=0;i<first;i++)h+="<div></div>";
- for(let n=1;n<=days;n++){let x=new Date(y,m,n),ds=dateKey(x),ts=tasksFor(x),done=ts.filter(t=>state.checks[key(ds,t)]).length;h+=`<div class="day ${ds===dateKey(new Date())?"today":""}"><div class="daynum">${n}</div><div class="small">${done}/${ts.length}</div>${done?'<span class="dot"></span>':''}${x.getDay()===4?'<span class="dot"></span>':''}${x.getDay()===5?'<span class="dot"></span>':''}</div>`}
- h+="</div></section><section class='card'><h3>Calendar key</h3><div class='small'>Thursday = bedroom/bathroom + laundry + plants. Friday = larger cleaning/reset. Monthly deep-clean tasks are added on selected Fridays.</div></section>";app.innerHTML=h}
-function renderSettings(){
- app.innerHTML=`<section class="card"><h2>Reminders</h2><div class="small">Notifications work while this app is open or when installed as a web app, depending on your iPhone/browser settings.</div>
- <div class="setting">Morning routine <input type="time" id="morning" value="${state.settings.morning}"></div>
- <div class="setting">Main chores <input type="time" id="cleaning" value="${state.settings.cleaning}"></div>
- <div class="setting">Night routine <input type="time" id="night" value="${state.settings.night}"></div>
- <div style="padding-top:14px"><button class="primary" id="notify">Enable reminders</button> <button class="secondary" id="clear">Reset check-offs</button></div></section>
- <section class="card"><h2>How to use on iPhone</h2><div class="small">Open this app in Safari → Share → Add to Home Screen. Then allow notifications when prompted.</div></section>`;
- ["morning","cleaning","night"].forEach(id=>document.getElementById(id).onchange=e=>{state.settings[id]=e.target.value;save()});
- document.getElementById("notify").onclick=async()=>{if("Notification" in window){let p=await Notification.requestPermission();state.settings.notifications=p==="granted";save();alert(p==="granted"?"Reminders enabled.":"Notifications were not enabled.")}else alert("Your browser does not support web notifications.")};
- document.getElementById("clear").onclick=()=>{if(confirm("Reset all check-offs?")){state.checks={};save();renderToday()}};
-}
-function show(tab){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));tab==="today"?renderToday():tab==="calendar"?renderCalendar():renderSettings()}
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>show(b.dataset.tab));
-headerDate.textContent=fmt(new Date());show("today");
-</script>
-</body></html>
+function dk(d){return d.toISOString().slice(0,10)} function today(){return new Date()} function fmt(d){return d.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}
+function tasksFor(d){let a=[...routines.morning.map(x=>"🌅 "+x),...daily];if(d.getDay()===4)a.push(...thu.map(x=>"🟢 "+x));if(d.getDay()===5)a.push(...fri.map(x=>"🟢 "+x));if(monthly[dk(d)])a.push(...monthly[dk(d)].map(x=>"🧽 "+x));state.custom.forEach(x=>{if(x.days.includes(d.getDay()))a.push("⭐ "+x.name)});a.push(...routines.night.map(x=>"🌙 "+x));return [...new Set(a)]}
+function checked(ds,t){return !!state.checks[ds+"|"+t]} function setcheck(ds,t,v){state.checks[ds+"|"+t]=v;save()}
+function row(t,ds){let r=document.createElement("label");r.className="row";let c=document.createElement("input");c.type="checkbox";c.checked=checked(ds,t);let s=document.createElement("span");s.textContent=t.replace(/^[🌅🟢🧽🌙⭐] /,"");if(c.checked)s.className="done";r.append(c,s);if(t.startsWith("🟢"))r.insertAdjacentHTML("beforeend","<span class='tag'>Off day</span>");if(t.startsWith("🧽"))r.insertAdjacentHTML("beforeend","<span class='tag'>Deep clean</span>");if(t.startsWith("⭐"))r.insertAdjacentHTML("beforeend","<span class='tag'>Custom</span>");c.onchange=()=>{setcheck(ds,t,c.checked);renderToday()};return r}
+function renderToday(){let d=today(),ds=dk(d),ts=tasksFor(d),done=ts.filter(t=>checked(ds,t)).length;app.innerHTML=`<section class="card"><h2>Today</h2><div class="small">${fmt(d)}</div><div class="progress"><div class="bar" style="width:${done/ts.length*100}%"></div></div><div class="small">${done} of ${ts.length} completed</div><div class="actions"><button class="primary" onclick="checkAll()">Complete remaining</button><button class="secondary" onclick="resetToday()">Reset today</button></div></section>`;let groups=[["🌅 Morning",ts.filter(x=>x.startsWith("🌅 "))],["🧹 Chores",ts.filter(x=>!x.startsWith("🌅 ")&&!x.startsWith("🌙 "))],["🌙 Night",ts.filter(x=>x.startsWith("🌙 "))]];groups.forEach(([name,list])=>{let c=document.createElement("section");c.className="card";c.innerHTML="<h2>"+name+"</h2>";list.forEach(t=>c.appendChild(row(t,ds)));app.appendChild(c)})}
+function checkAll(){let d=today(),ds=dk(d);tasksFor(d).forEach(t=>setcheck(ds,t,true));renderToday()}
+function resetToday(){if(confirm("Reset today's check-offs?")){let ds=dk(today());tasksFor(today()).forEach(t=>delete state.checks[ds+"|"+t]);save();renderToday()}}
+function renderCalendar(){let d=today(),y=d.getFullYear(),m=d.getMonth(),first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();let h=`<section class="card"><h2>${d.toLocaleDateString(undefined,{month:"long",year:"numeric"})}</h2><div class="grid">`;["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(x=>h+=`<div class="weekday">${x}</div>`);for(let i=0;i<first;i++)h+="<div></div>";for(let n=1;n<=days;n++){let x=new Date(y,m,n),ts=tasksFor(x),done=ts.filter(t=>checked(dk(x),t)).length;h+=`<div class="day ${dk(x)===dk(d)?"today":""}"><strong>${n}</strong><div class="small">${done}/${ts.length}</div>${done?"<span class='dot'></span>":""}${x.getDay()===4||x.getDay()===5?"<span class='dot'></span>":""}</div>`}h+="</div></section><section class='card'><h3>🟢 Thursday / Friday</h3><div class='small'>Thursday focuses on bedroom, bathroom, laundry and plants. Friday is your larger cleaning/reset day.</div></section>";app.innerHTML=h}
+function stats(){let now=today(), total=0,done=0,days=0;for(let i=0;i<30;i++){let d=new Date(now);d.setDate(now.getDate()-i);let ts=tasksFor(d);let n=ts.filter(t=>checked(dk(d),t)).length;total+=ts.length;done+=n;if(n===ts.length)days++}let streak=0;for(let i=0;i<30;i++){let d=new Date(now);d.setDate(now.getDate()-i);let ts=tasksFor(d);if(ts.filter(t=>checked(dk(d),t)).length===ts.length)streak++;else break}let pct=total?Math.round(done/total*100):0;app.innerHTML=`<section class='card'><h2>Progress</h2><div class='statgrid'><div class='stat'><div class='streak'>${streak}</div><div class='small'>day streak</div></div><div class='stat'><div class='streak'>${pct}%</div><div class='small'>30-day completion</div></div><div class='stat'><div class='streak'>${days}</div><div class='small'>full days</div></div></div></section><section class='card'><h2>Keep it simple</h2><div class='small'>A missed day doesn't erase your progress. Your streak is just a fun extra—getting back to the routine matters more.</div></section>`}
+function renderSettings(){app.innerHTML=`<section class='card'><h2>Reminder times</h2><div class='small'>Choose when you'd like each routine to happen.</div>${setting("Morning routine","morning")}${setting("Main chores","cleaning")}${setting("Plant reminder","plants")}${setting("Night routine","night")}<div class='actions'><button class='primary' onclick='notify()'>Enable notifications</button><button class='secondary' onclick='resetAll()'>Reset all data</button></div></section><section class='card'><h2>Add a custom recurring chore</h2><input id='newName' type='text' placeholder='Example: Take out recycling'><h3>Days</h3><div class='small'>${[["0","Sun"],["1","Mon"],["2","Tue"],["3","Wed"],["4","Thu"],["5","Fri"],["6","Sat"]].map(([v,n])=>`<label style="margin-right:8px;display:inline-block"><input class='daypick' type='checkbox' value='${v}'> ${n}</label>`).join("")}</div><div class='actions'><button class='primary' onclick='addCustom()'>Add chore</button></div></section><section class='card'><h2>Your custom chores</h2>${state.custom.length?state.custom.map((x,i)=>`<div class='row'><span>${x.name}<div class='small'>${x.days.map(d=>["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d]).join(", ")}</div></span><button class='secondary' onclick='delCustom(${i})'>Delete</button></div>`).join(""):"<div class='empty'>No custom chores yet.</div>"}</section><section class='card'><h2>iPhone setup</h2><div class='small'>Open this site in Safari → Share → Add to Home Screen. Then open it from the Home Screen for the app-style experience.</div></section>`}
+function setting(label,id){return `<div class='setting'><span>${label}</span><input type='time' value='${state.settings[id]}' onchange="state.settings['${id}']=this.value;save()"></div>`}
+function addCustom(){let n=document.getElementById("newName").value.trim(),days=[...document.querySelectorAll(".daypick:checked")].map(x=>+x.value);if(!n||!days.length){alert("Enter a chore and choose at least one day.");return}state.custom.push({name:n,days});save();renderSettings()}
+function delCustom(i){state.custom.splice(i,1);save();renderSettings()}
+function resetAll(){if(confirm("This deletes all check-offs and custom chores. Continue?")){state={...defaultState,settings:{...defaultState.settings}};save();renderSettings()}}
+async function notify(){if(!("Notification"in window)){alert("Notifications aren't supported in this browser.");return}let p=await Notification.requestPermission();if(p==="granted"){new Notification("My Chore Reset",{body:"Reminders are enabled. Keep your routine going!"});alert("Notifications enabled. iPhone may require the app to be installed on your Home Screen for web notifications.")}else alert("Notifications were not enabled.")}
+function show(tab){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));tab==="today"?renderToday():tab==="calendar"?renderCalendar():tab==="stats"?stats():renderSettings()}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>show(b.dataset.tab));headerDate.textContent=fmt(today());show("today");
+</script></body></html>
